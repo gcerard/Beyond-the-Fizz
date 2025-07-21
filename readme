@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Health Effects of Coca-Cola: An Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .icon-unicode {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-[#073B4C]">
+
+    <div class="container mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
+
+        <header class="text-center my-8 md:my-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#118AB2] uppercase">Beyond the Fizz</h1>
+            <p class="text-lg md:text-2xl mt-4 max-w-3xl mx-auto text-[#073B4C]">Is Coca-Cola's pH the real villain, or is something else at play? We break down the science behind what's in your can.</p>
+        </header>
+
+        <main>
+            <section id="ph-myth" class="mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-[#118AB2] mb-4">The Acidity Question: A pH Primer</h2>
+                    <p class="mb-6 text-base">A common concern about Coca-Cola is its low pH, making it highly acidic. While this acidity is a real factor for dental health, it's not the primary threat to your body's internal systems. Your stomach is naturally more acidic to digest food, and your body has powerful mechanisms to maintain a stable internal pH balance.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2 text-center">Comparing pH Levels</h3>
+                            <p class="text-sm text-center mb-4 text-gray-600">Lower pH means higher acidity. While Coke is acidic, your stomach acid is far more potent.</p>
+                            <div class="chart-container h-64 md:h-[300px]">
+                                <canvas id="phChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="text-center bg-amber-50 border-l-4 border-[#FFD166] p-6 rounded-lg">
+                            <h3 class="text-2xl font-bold text-[#073B4C]">The Real Damage: Dental Erosion</h3>
+                             <p class="icon-unicode mt-4 mb-2">🦷</p>
+                            <p class="text-base">The primary danger of cola's acidity is to your teeth. The phosphoric and citric acids can erode tooth enamel, especially with frequent consumption. This erosion softens the tooth surface, making it more susceptible to cavities and decay.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="sugar-tsunami" class="mb-12">
+                <h2 class="text-3xl font-bold text-center text-[#FF6B6B] mb-6">The Real Culprit: The Sugar Tsunami</h2>
+                 <p class="text-lg text-center max-w-3xl mx-auto mb-8">If pH isn't the main systemic problem, what is? The overwhelming scientific consensus points to one ingredient above all others: sugar. The amount of sugar in a single can of cola is staggering and has profound effects on the body.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-center flex flex-col justify-center items-center">
+                        <h3 class="text-2xl font-bold text-[#073B4C]">In a Single 12oz (355ml) Can:</h3>
+                        <p class="text-8xl md:text-9xl font-black text-[#FF6B6B] my-4">39g</p>
+                        <p class="text-2xl font-semibold text-[#073B4C]">of Added Sugar</p>
+                        <p class="text-xl mt-4 text-gray-600">That's equivalent to nearly <span class="font-bold">10 teaspoons</span>.</p>
+                        <div class="text-4xl mt-4 text-[#FF6B6B]" aria-hidden="true">
+                            <span>🥄</span><span>🥄</span><span>🥄</span><span>🥄</span><span>🥄</span><span>🥄</span><span>🥄</span><span>🥄</span><span>🥄</span><span>🥄</span>
+                        </div>
+                    </div>
+                     <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                         <h3 class="text-xl font-semibold mb-2 text-center">One Can vs. Daily Recommendation</h3>
+                         <p class="text-sm text-center mb-4 text-gray-600">The World Health Organization (WHO) recommends no more than 25g (about 6 teaspoons) of added sugar per day for optimal health. A single can of cola far exceeds that limit.</p>
+                        <div class="chart-container h-80">
+                            <canvas id="sugarIntakeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="timeline" class="mb-12">
+                 <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-[#118AB2] text-center mb-2">The 60-Minute Rollercoaster</h2>
+                    <p class="text-lg text-center max-w-3xl mx-auto mb-8">The impact of a can of cola is immediate. Here's what happens to your body in the hour after you take a sip.</p>
+                    <div class="relative">
+                        <div class="absolute left-1/2 -translate-x-1/2 top-0 h-full w-1 bg-gray-200 rounded hidden md:block" aria-hidden="true"></div>
+                        <div class="space-y-8">
+                            <div class="md:flex items-center md:space-x-8">
+                                <div class="md:w-1/2 text-right">
+                                    <div class="bg-white p-4 rounded-lg md:shadow-md relative md:mr-8">
+                                        <h4 class="font-bold text-xl text-[#06D6A0]">First 20 Minutes: Sugar Spike</h4>
+                                        <p>Your blood sugar skyrockets, causing a massive insulin burst. Your liver responds by turning the deluge of sugar into fat.</p>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-[#06D6A0] text-white flex items-center justify-center font-bold text-xl mx-auto my-4 md:my-0 flex-shrink-0 relative">20'</div>
+                                <div class="md:w-1/2"></div>
+                            </div>
+                             <div class="md:flex flex-row-reverse items-center md:space-x-8 md:space-x-reverse">
+                                <div class="md:w-1/2 text-left">
+                                    <div class="bg-white p-4 rounded-lg md:shadow-md relative md:ml-8">
+                                        <h4 class="font-bold text-xl text-[#FFD166]">40 Minutes: Caffeine Hit</h4>
+                                        <p>Caffeine absorption is complete. Your pupils dilate, blood pressure rises, and your liver dumps more sugar into your bloodstream. Adenosine receptors in your brain are blocked, preventing drowsiness.</p>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-[#FFD166] text-white flex items-center justify-center font-bold text-xl mx-auto my-4 md:my-0 flex-shrink-0 relative">40'</div>
+                                <div class="md:w-1/2"></div>
+                            </div>
+                            <div class="md:flex items-center md:space-x-8">
+                                <div class="md:w-1/2 text-right">
+                                    <div class="bg-white p-4 rounded-lg md:shadow-md relative md:mr-8">
+                                        <h4 class="font-bold text-xl text-[#FF6B6B]">45 Minutes: Dopamine Rush</h4>
+                                        <p>Your body boosts dopamine production, stimulating the pleasure centers of your brain. This is physically the same way heroin works, triggering a craving for more.</p>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-[#FF6B6B] text-white flex items-center justify-center font-bold text-xl mx-auto my-4 md:my-0 flex-shrink-0 relative">45'</div>
+                                <div class="md:w-1/2"></div>
+                            </div>
+                            <div class="md:flex flex-row-reverse items-center md:space-x-8 md:space-x-reverse">
+                                <div class="md:w-1/2 text-left">
+                                    <div class="bg-white p-4 rounded-lg md:shadow-md relative md:ml-8">
+                                        <h4 class="font-bold text-xl text-[#118AB2]">60+ Minutes: The Crash</h4>
+                                        <p>A sugar crash begins. You may become irritable and drowsy. You've also urinated away vital nutrients like calcium, magnesium, and zinc that were headed to your bones, all flushed out with the water from the cola.</p>
+                                    </div>
+                                </div>
+                               <div class="w-12 h-12 rounded-full bg-[#118AB2] text-white flex items-center justify-center font-bold text-xl mx-auto my-4 md:my-0 flex-shrink-0 relative">60'</div>
+                                <div class="md:w-1/2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="long-term" class="mb-12">
+                 <h2 class="text-3xl font-bold text-center text-[#FF6B6B] mb-8">The Long-Term Toll of Regular Consumption</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                        <p class="icon-unicode text-[#FF6B6B]">⚖️</p>
+                        <h3 class="text-xl font-bold mt-2 mb-2">Obesity & Weight Gain</h3>
+                        <p>Liquid sugar calories are less filling, leading to higher overall calorie intake. Linked strongly to visceral (belly) fat.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                        <p class="icon-unicode text-[#FFD166]">🩸</p>
+                        <h3 class="text-xl font-bold mt-2 mb-2">Type 2 Diabetes</h3>
+                        <p>Drives insulin resistance. Drinking just one soda per day can increase the risk of type 2 diabetes by over 20%.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                        <p class="icon-unicode text-[#118AB2]">❤️</p>
+                        <h3 class="text-xl font-bold mt-2 mb-2">Heart Disease</h3>
+                        <p>Contributes to risk factors like high blood pressure, high LDL ("bad") cholesterol, and inflammation.</p>
+                    </div>
+                     <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                        <p class="icon-unicode text-[#06D6A0]">🦴</p>
+                        <h3 class="text-xl font-bold mt-2 mb-2">Bone Health Issues</h3>
+                        <p>High phosphoric acid content can interfere with calcium absorption, potentially leading to lower bone density over time.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                        <p class="icon-unicode" style="color: #6a4c93;"> kidneys </p>
+                        <h3 class="text-xl font-bold mt-2 mb-2">Kidney Disease</h3>
+                        <p>High sugar and phosphoric acid levels are taxing on the kidneys. Drinking 2+ colas per day has been linked to a doubled risk of chronic kidney disease.</p>
+                    </div>
+                     <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                        <p class="icon-unicode text-[#073B4C]">🧠</p>
+                        <h3 class="text-xl font-bold mt-2 mb-2">Increased Dementia Risk</h3>
+                        <p>High blood sugar levels are associated with an increased risk of dementia, including Alzheimer's disease.</p>
+                    </div>
+                </div>
+            </section>
+
+             <section id="other-culprits" class="mb-12">
+                <h2 class="text-3xl font-bold text-center text-[#118AB2] mb-8">Beyond Sugar: Other Ingredients of Note</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                        <h3 class="text-xl font-semibold mb-2 text-center">Caffeine Content</h3>
+                        <p class="text-sm text-center mb-4 text-gray-600">While less than coffee, the caffeine in cola is a stimulant that contributes to its effects and potential for dependency.</p>
+                        <div class="chart-container h-64">
+                            <canvas id="caffeineChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-center flex flex-col justify-center">
+                        <h3 class="text-xl font-bold text-[#073B4C] mb-2">What About "Diet" or "Zero Sugar"?</h3>
+                         <p class="text-base mb-4">These versions replace sugar with artificial sweeteners like aspartame and acesulfame potassium. While they eliminate sugar calories, their long-term health effects are still debated. Some studies link regular consumption of artificial sweeteners to an altered gut microbiome, potential changes in metabolic response, and even an increased craving for sweet foods.</p>
+                         <p class="text-sm text-gray-600">The verdict: Likely better than the sugary version, but water is unequivocally the healthier choice.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-12 py-8 border-t border-gray-200">
+            <p class="text-lg font-bold text-[#073B4C]">The Takeaway: Moderation is Key</p>
+            <p class="text-base text-gray-600 max-w-2xl mx-auto mt-2">While an occasional soda is unlikely to cause major harm, regular consumption poses significant, well-documented health risks that go far beyond its pH level. The primary driver of these risks is its extremely high concentration of added sugar. Making informed choices and prioritizing water and other unsweetened beverages is crucial for long-term health.</p>
+             <p class="text-xs text-gray-400 mt-8">Data sourced from studies published by the World Health Organization, CDC, and various peer-reviewed medical journals. This infographic is for informational purposes only.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const energeticPlayful = {
+                red: '#FF6B6B',
+                yellow: '#FFD166',
+                green: '#06D6A0',
+                blue: '#118AB2',
+                darkBlue: '#073B4C',
+                lightGray: '#F0F2F5'
+            };
+
+            function wrapLabel(str, maxLen) {
+                if (str.length <= maxLen) {
+                    return str;
+                }
+                const words = str.split(' ');
+                let lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + word).length > maxLen) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                }
+                lines.push(currentLine.trim());
+                return lines;
+            }
+
+            const commonTooltipConfig = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const phCtx = document.getElementById('phChart');
+            if(phCtx) {
+                new Chart(phCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Stomach Acid', 'Coca-Cola', 'Orange Juice', 'Black Coffee', 'Pure Water', 'Blood'],
+                        datasets: [{
+                            label: 'pH Level (Lower is more acidic)',
+                            data: [1.5, 2.5, 3.7, 5.0, 7.0, 7.4],
+                            backgroundColor: [
+                                energeticPlayful.red,
+                                energeticPlayful.yellow,
+                                energeticPlayful.yellow,
+                                energeticPlayful.green,
+                                energeticPlayful.blue,
+                                energeticPlayful.darkBlue
+                            ],
+                            borderColor: 'rgba(255, 255, 255, 0)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         ...commonTooltipConfig,
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(0,0,0,0.05)'
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        },
+                        plugins: {
+                            ...commonTooltipConfig.plugins,
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            const sugarCtx = document.getElementById('sugarIntakeChart');
+            if(sugarCtx) {
+                new Chart(sugarCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Sugar in one 12oz Cola', 'Remaining Daily Allowance', 'Exceeded Amount'],
+                        datasets: [{
+                            data: [25, 0, 14],
+                            backgroundColor: [
+                                energeticPlayful.blue,
+                                energeticPlayful.lightGray,
+                                energeticPlayful.red,
+                            ],
+                            hoverOffset: 4,
+                            borderColor: '#FFFFFF',
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '70%',
+                        plugins: {
+                            ...commonTooltipConfig.plugins,
+                            legend: {
+                                position: 'bottom',
+                            },
+                            tooltip: {
+                                ...commonTooltipConfig.plugins.tooltip,
+                                callbacks: {
+                                    ...commonTooltipConfig.plugins.tooltip.callbacks,
+                                    label: function(context) {
+                                        let label = context.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed !== null) {
+                                            if (label.includes("Exceeded")) {
+                                                return `Exceeded by ${context.raw}g`;
+                                            }
+                                             if (label.includes("Remaining")) {
+                                                return `WHO Recommended Limit: 25g`;
+                                            }
+                                            label += `${context.raw}g`;
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+             const caffeineCtx = document.getElementById('caffeineChart');
+            if(caffeineCtx) {
+                new Chart(caffeineCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['12oz Coca-Cola', '12oz Diet Coke', '8oz Brewed Coffee', '8oz Black Tea'],
+                        datasets: [{
+                            label: 'Caffeine (mg)',
+                            data: [34, 46, 95, 47],
+                            backgroundColor: [
+                                energeticPlayful.red,
+                                energeticPlayful.blue,
+                                energeticPlayful.darkBlue,
+                                energeticPlayful.yellow
+                            ],
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        ...commonTooltipConfig,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Caffeine in mg'
+                                }
+                            }
+                        },
+                        plugins: {
+                            ...commonTooltipConfig.plugins,
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
