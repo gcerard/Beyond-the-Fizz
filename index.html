@@ -163,7 +163,7 @@
                         <p>High phosphoric acid content can interfere with calcium absorption, potentially leading to lower bone density over time.</p>
                     </div>
                     <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
-                        <p class="icon-unicode" style="color: #6a4c93;"> kidneys </p>
+                        <p class="icon-unicode" style="color: #6a4c93;"> 🫘 </p>
                         <h3 class="text-xl font-bold mt-2 mb-2">Kidney Disease</h3>
                         <p>High sugar and phosphoric acid levels are taxing on the kidneys. Drinking 2+ colas per day has been linked to a doubled risk of chronic kidney disease.</p>
                     </div>
@@ -189,6 +189,26 @@
                         <h3 class="text-xl font-bold text-[#073B4C] mb-2">What About "Diet" or "Zero Sugar"?</h3>
                          <p class="text-base mb-4">These versions replace sugar with artificial sweeteners like aspartame and acesulfame potassium. While they eliminate sugar calories, their long-term health effects are still debated. Some studies link regular consumption of artificial sweeteners to an altered gut microbiome, potential changes in metabolic response, and even an increased craving for sweet foods.</p>
                          <p class="text-sm text-gray-600">The verdict: Likely better than the sugary version, but water is unequivocally the healthier choice.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="gemini-feature" class="mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-[#06D6A0] text-center mb-4">✨ Find Your Healthier Sip! ✨</h2>
+                    <p class="text-lg text-center max-w-3xl mx-auto mb-6 text-[#073B4C]">Looking for alternatives to sugary drinks? Tell us your preferences, and our AI will suggest some healthier options for you!</p>
+                    <div class="flex flex-col items-center space-y-4">
+                        <textarea id="drinkPreference" class="w-full md:w-2/3 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#06D6A0] resize-y" rows="4" placeholder="e.g., 'I like sweet and fizzy drinks but want less sugar', 'something refreshing and caffeine-free', 'a healthy morning boost'"></textarea>
+                        <button id="generateAlternativesBtn" class="bg-[#06D6A0] text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#05B08A] transition duration-300 ease-in-out">
+                            Suggest Alternatives ✨
+                        </button>
+                        <div id="loadingIndicator" class="hidden text-[#073B4C] mt-4">
+                            <div class="animate-spin inline-block w-6 h-6 border-4 border-t-4 border-[#06D6A0] border-t-transparent rounded-full"></div>
+                            <span class="ml-2">Generating suggestions...</span>
+                        </div>
+                        <div id="alternativesOutput" class="w-full md:w-2/3 mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200 text-[#073B4C] prose max-w-none">
+                            <p class="text-center text-gray-500">Your healthier drink suggestions will appear here.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -392,6 +412,54 @@
                     }
                 });
             }
+
+            // Gemini API Integration
+            const drinkPreferenceInput = document.getElementById('drinkPreference');
+            const generateAlternativesBtn = document.getElementById('generateAlternativesBtn');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const alternativesOutput = document.getElementById('alternativesOutput');
+
+            generateAlternativesBtn.addEventListener('click', async () => {
+                const promptText = drinkPreferenceInput.value.trim();
+                if (!promptText) {
+                    alternativesOutput.innerHTML = '<p class="text-center text-red-500">Please tell us your drink preferences!</p>';
+                    return;
+                }
+
+                loadingIndicator.classList.remove('hidden');
+                alternativesOutput.innerHTML = ''; // Clear previous output
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: `Given the health concerns of sugary drinks, suggest 3-5 healthier beverage alternatives for someone who says: '${promptText}'. Provide a brief reason for each suggestion. Format as a bulleted list.` }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Canvas will automatically provide this
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        alternativesOutput.innerHTML = `<p>${text.replace(/\n/g, '<br>')}</p>`; // Display as HTML with line breaks
+                    } else {
+                        alternativesOutput.innerHTML = '<p class="text-center text-red-500">Sorry, I could not generate suggestions. Please try again.</p>';
+                        console.error('Unexpected API response structure:', result);
+                    }
+                } catch (error) {
+                    alternativesOutput.innerHTML = '<p class="text-center text-red-500">An error occurred while fetching suggestions. Please check your network connection.</p>';
+                    console.error('Error calling Gemini API:', error);
+                } finally {
+                    loadingIndicator.classList.add('hidden');
+                }
+            });
         });
     </script>
 </body>
