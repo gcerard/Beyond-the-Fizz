@@ -79,7 +79,7 @@
                     </div>
                      <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
                          <h3 class="text-xl font-semibold mb-2 text-center">One Can vs. Daily Recommendation</h3>
-                         <p class="text-sm text-center mb-4 text-gray-600">The World Health Organization (WHO) recommends no more than 25g (about 6 teaspoons) of added sugar per day for optimal health. A single can of cola far exceeds that limit.</p>
+                         <p class="text-sm text-center mb-4 text-gray-600">The World Health Organization (WHO) recommends no more than 25g (about 6 teaspoons) of added sugar daily for optimal health. A single can of cola far exceeds that limit.</p>
                         <div class="chart-container h-80">
                             <canvas id="sugarIntakeChart"></canvas>
                         </div>
@@ -450,11 +450,12 @@
                         const text = result.candidates[0].content.parts[0].text;
                         alternativesOutput.innerHTML = `<p>${text.replace(/\n/g, '<br>')}</p>`; // Display as HTML with line breaks
                     } else {
-                        alternativesOutput.innerHTML = '<p class="text-center text-red-500">Sorry, I could not generate suggestions. Please try again.</p>';
+                        // More specific error for empty or malformed response
+                        alternativesOutput.innerHTML = '<p class="text-center text-red-500">Sorry, I could not generate suggestions. The response was empty or malformed. This might be due to content filtering or an unexpected API issue. Please try rephrasing your request.</p>';
                         console.error('Unexpected API response structure:', result);
                     }
                 } catch (error) {
-                    alternativesOutput.innerHTML = '<p class="text-center text-red-500">An error occurred while fetching suggestions. Please check your network connection.</p>';
+                    alternativesOutput.innerHTML = '<p class="text-center text-red-500">An error occurred while fetching suggestions. Please check your network connection or try again later.</p>';
                     console.error('Error calling Gemini API:', error);
                 } finally {
                     loadingIndicator.classList.add('hidden');
