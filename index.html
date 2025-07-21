@@ -410,55 +410,7 @@
                             }
                         }
                     }
-                });
-            }
-
-            // Gemini API Integration
-            const drinkPreferenceInput = document.getElementById('drinkPreference');
-            const generateAlternativesBtn = document.getElementById('generateAlternativesBtn');
-            const loadingIndicator = document.getElementById('loadingIndicator');
-            const alternativesOutput = document.getElementById('alternativesOutput');
-
-            generateAlternativesBtn.addEventListener('click', async () => {
-                const promptText = drinkPreferenceInput.value.trim();
-                if (!promptText) {
-                    alternativesOutput.innerHTML = '<p class="text-center text-red-500">Please tell us your drink preferences!</p>';
-                    return;
-                }
-
-                loadingIndicator.classList.remove('hidden');
-                alternativesOutput.innerHTML = ''; // Clear previous output
-
-                try {
-                    let chatHistory = [];
-                    chatHistory.push({ role: "user", parts: [{ text: `Given the health concerns of sugary drinks, suggest 3-5 healthier beverage alternatives for someone who says: '${promptText}'. Provide a brief reason for each suggestion. Format as a bulleted list.` }] });
-                    const payload = { contents: chatHistory };
-                    const apiKey = ""; // Canvas will automatically provide this
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    const result = await response.json();
-
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        const text = result.candidates[0].content.parts[0].text;
-                        alternativesOutput.innerHTML = `<p>${text.replace(/\n/g, '<br>')}</p>`; // Display as HTML with line breaks
-                    } else {
-                        // More specific error for empty or malformed response
-                        alternativesOutput.innerHTML = '<p class="text-center text-red-500">Sorry, I could not generate suggestions. The response was empty or malformed. This might be due to content filtering or an unexpected API issue. Please try rephrasing your request.</p>';
-                        console.error('Unexpected API response structure:', result);
-                    }
-                } catch (error) {
-                    alternativesOutput.innerHTML = '<p class="text-center text-red-500">An error occurred while fetching suggestions. Please check your network connection or try again later.</p>';
-                    console.error('Error calling Gemini API:', error);
-                } finally {
-                    loadingIndicator.classList.add('hidden');
+        
                 }
             });
         });
