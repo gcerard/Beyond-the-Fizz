@@ -79,7 +79,7 @@
                     </div>
                      <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
                          <h3 class="text-xl font-semibold mb-2 text-center">One Can vs. Daily Recommendation</h3>
-                         <p class="text-sm text-center mb-4 text-gray-600">The World Health Organization (WHO) recommends no more than 25g (about 6 teaspoons) of added sugar daily for optimal health. A single can of cola far exceeds that limit.</p>
+                         <p class="text-sm text-center mb-4 text-gray-600">The World Health Organization (WHO) recommends no more than 25g (about 6 teaspoons) of added sugar per day for optimal health. A single can of cola far exceeds that limit.</p>
                         <div class="chart-container h-80">
                             <canvas id="sugarIntakeChart"></canvas>
                         </div>
@@ -163,7 +163,7 @@
                         <p>High phosphoric acid content can interfere with calcium absorption, potentially leading to lower bone density over time.</p>
                     </div>
                     <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
-                        <p class="icon-unicode" style="color: #6a4c93;"> 🫘 </p>
+                        <p class="icon-unicode" style="color: #6a4c93;"> kidneys unicode </p>
                         <h3 class="text-xl font-bold mt-2 mb-2">Kidney Disease</h3>
                         <p>High sugar and phosphoric acid levels are taxing on the kidneys. Drinking 2+ colas per day has been linked to a doubled risk of chronic kidney disease.</p>
                     </div>
@@ -189,26 +189,6 @@
                         <h3 class="text-xl font-bold text-[#073B4C] mb-2">What About "Diet" or "Zero Sugar"?</h3>
                          <p class="text-base mb-4">These versions replace sugar with artificial sweeteners like aspartame and acesulfame potassium. While they eliminate sugar calories, their long-term health effects are still debated. Some studies link regular consumption of artificial sweeteners to an altered gut microbiome, potential changes in metabolic response, and even an increased craving for sweet foods.</p>
                          <p class="text-sm text-gray-600">The verdict: Likely better than the sugary version, but water is unequivocally the healthier choice.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="gemini-feature" class="mb-12">
-                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-                    <h2 class="text-3xl font-bold text-[#06D6A0] text-center mb-4">✨ Find Your Healthier Sip! ✨</h2>
-                    <p class="text-lg text-center max-w-3xl mx-auto mb-6 text-[#073B4C]">Looking for alternatives to sugary drinks? Tell us your preferences, and our AI will suggest some healthier options for you!</p>
-                    <div class="flex flex-col items-center space-y-4">
-                        <textarea id="drinkPreference" class="w-full md:w-2/3 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#06D6A0] resize-y" rows="4" placeholder="e.g., 'I like sweet and fizzy drinks but want less sugar', 'something refreshing and caffeine-free', 'a healthy morning boost'"></textarea>
-                        <button id="generateAlternativesBtn" class="bg-[#06D6A0] text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-[#05B08A] transition duration-300 ease-in-out">
-                            Suggest Alternatives ✨
-                        </button>
-                        <div id="loadingIndicator" class="hidden text-[#073B4C] mt-4">
-                            <div class="animate-spin inline-block w-6 h-6 border-4 border-t-4 border-[#06D6A0] border-t-transparent rounded-full"></div>
-                            <span class="ml-2">Generating suggestions...</span>
-                        </div>
-                        <div id="alternativesOutput" class="w-full md:w-2/3 mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200 text-[#073B4C] prose max-w-none">
-                            <p class="text-center text-gray-500">Your healthier drink suggestions will appear here.</p>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -410,9 +390,8 @@
                             }
                         }
                     }
-        
-                }
-            });
+                });
+            }
         });
     </script>
 </body>
